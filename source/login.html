@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!------ bootstrap css link ------>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Login Form</title>
+
+    <!------ external css & js links ------>
+
+    <link rel = "stylesheet" href = "css/style.css">
+    <script src = "js/"> </script>
+    
+    <!------ display shortcut icon ------>
+    <link rel = "shortcut icon" href = "images/">
+
+</head>
+
+<body>
+
+  <nav>
+    <h3>PHP-Login-System</h3>
+    <ul>
+      <li><a href="home.html" style="text-decoration: none;">Home</a></li>
+      <li><a href="registrationForm.html" style="text-decoration: none;">Register</a></li>
+      <li><a href="login.html" style="text-decoration: none;">Login</a></li>
+    </ul>
+  </nav>
+
+    <div class = "container">
+
+        <br><br>
+
+        <div class="card bg-light mb-3">
+
+          <div class="card-header">
+
+        <center><h1>Login Form</h1></center>
+
+        </div>
+
+        <div class="card-body">
+
+    <form method="post" action="./php/login.php">
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" pattern ="[a-zA-Z0-9.%+-]*{8}" placeholder="Enter Email">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="login" name="login">Login</button>
+
+        <br><br>
+
+      </form>
+
+    </div>
+
+    </div>
+
+    </div>
+
+</body>
+</html>
