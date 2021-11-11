@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!------ bootstrap css link ------>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!------ google font ------>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <title>Registration Form</title>
+
+    <!------ external css & js links ------>
+
+    <link rel = "stylesheet" href = "css/style.css">
+    <script src = "./js/registrationForm.js"> </script>
+
+    <!------ simple alert ------>
+    <script> 
+        alert("Welcome to Page !!!");
+    </script>
+    
+    <!------ display shortcut icon ------>
+    <link rel = "shortcut icon" href = "images/">
+
+</head>
+
+<body>
+
+  <nav>
+    <h3>PHP-Login-System</h3>
+    <ul>
+      <li><a href="home.html" style="text-decoration: none;">Home</a></li>
+      <li><a href="registrationForm.html" style="text-decoration: none;">Register</a></li>
+      <li><a href="login.html" style="text-decoration: none;">Login</a></li>
+    </ul>
+  </nav>
+
+    <div class = "container">
+
+        <br/><br/>
+
+        <div class="card bg-light mb-3">
+
+        <div class="card-header">
+        <center><h1>Registration Form</h1></center>
+        </div>
+
+        <div class="card-body">
+
+    <form method="post" action="./php/insert.php" onsubmit="return checkPassword()">
+
+        <div class="form-group">
+            <label for="fname">Full Name</label>
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter Full Name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" name="address" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="nic">NIC Number</label>
+            <input type="text" class="form-control" id="nic" name="nic" pattern="[0-9]*{9}[V]{1}" placeholder="Enter NIC Number" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pnumber">Phone Number</label>
+            <input type="text" class="form-control" id="pnumber" name="pnumber" pattern="[0-9]*{10}" placeholder="Enter Phone Number" required>
+          </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" pattern = "[a-zA-Z0-9.-%+_]+@[a-z0-9]+\.[a-z]{2,3}" placeholder="Enter Email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="gender">Gender</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="Male" checked>
+            <label class="form-check-label" for="male">
+              Male
+            </label>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input class="form-check-input" type="radio" name="gender" id="gender" value="Female">
+            <label class="form-check-label" for="female">
+              Female
+            </label>
+          </div>
+          </div>
+
+        <div class="form-group" >
+            <label for="bdy">Birth Date</label>
+            <select id="bdy" name="bdy" class="form-control">
+              <option selected>1999-11-08</option>
+              <option>1999-06-16</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+
+            <label for="check">Select</label>
+            
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="check" name="check[]" value="1">
+            <label class="form-check-label" for="check">Check 1</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="check" name="check[]" value="2">
+            <label class="form-check-label" for="check">Check 2</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="check" name="check[]" value="3">
+            <label class="form-check-label" for="check">Check 3</label>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="repassword">Re-Enter Password</label>
+            <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Re Enter Password" required>
+          </div>
+
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="checkbox" name="checkbox" onclick = "enableButton()">
+          <label class="form-check-label" for="checkbox">Accept Privacy & Policy Terms</label>
+        </div>
+
+        <br> 
+
+        <button type="submit" class="btn btn-primary" id="submit" name="submit" disabled>Submit</button>
+
+        <button type="reset" class="btn btn-primary" id="reset" name="reset">Reset</button>
+
+        <br><br>
+
+      </form>
+
+    </div>
+
+    </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
