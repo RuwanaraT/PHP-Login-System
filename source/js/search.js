@@ -1,5 +1,5 @@
 
-const searchBuyers = () => {
+const searchUsers = () => {
 
     let keyword = document.getElementById('search').value.toUpperCase();
     let stable = document.getElementById('searchTable');

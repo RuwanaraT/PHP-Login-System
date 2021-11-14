@@ -54,18 +54,23 @@ require('./config/db.php');
         <div class="card-body">
 
 
-  <input class="form-control me-2" type="search" placeholder="Search by name..." aria-label="Search" id="search" name="search" onkeyup="searchBuyers()">
+  <input class="form-control me-2" type="search" placeholder="Search by name..." aria-label="Search" id="search" name="search" onkeyup="searchUsers()">
   
-
+  
   <?php
 
+      // select query
       $readquery = $pdo -> prepare("SELECT * FROM user");
+      // execute the select query
       $readquery -> execute();
+      // get the row count
       $rowCount = $readquery -> rowCount();
 
 
+      // if the row count is greater than 0
       if($rowCount > 0) {
 
+        // stat of the table 
         echo "<table class='table' id='searchTable'>";
 
         echo "<thead>";
@@ -83,10 +88,10 @@ require('./config/db.php');
 
         echo "<tbody>";
 
-        // $rowCount->fetch_assoc()
-
+        // fetch the rows by row from the user table until it finish
         while($row = $readquery -> fetch()) {
 
+          // retrieve and display values on the page
        echo "<tr class='table-info'>";
        echo " <td>{$row -> id}</td>";
        echo " <td>{$row -> fullname}</td>";
@@ -102,14 +107,17 @@ require('./config/db.php');
 
         echo "</tbody>";
         echo "</table>";
+        // end of the table
 
       }
 
+      // if not
       else {
-          echo "No result";
+        
+        // print
+          echo "No results";
       }
 
-      // $conn->close();
 
   ?>
     

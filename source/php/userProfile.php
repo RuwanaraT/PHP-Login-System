@@ -3,17 +3,25 @@
 // link the configuration file
 require('./config/db.php');
 
+// start the session variable
 session_start();
 
+// check whether the session variable containg unique id
 if(isset($_SESSION['id'])) {
 
+    // create variable and assign the session variable value(id)
     $userId = $_SESSION['id'];
 
+    // select query
     $stmt = $pdo -> prepare("SELECT * FROM user WHERE id = ?");
+    // execute select query
     $stmt -> execute([ $userId]);
 
+    // check whether the update button containing values
     if(isset($_POST['edit'])) {
 
+    // create variables and access the updated values and other values using post method and name attribute
+    // at the same time sanitize sensitive values for security purposes
         $FullName = filter_var($_POST["one"], FILTER_SANITIZE_STRING);
         $Address = filter_var($_POST["two"], FILTER_SANITIZE_STRING);
         $NIC = filter_var($_POST["three"], FILTER_SANITIZE_STRING);
@@ -21,10 +29,13 @@ if(isset($_SESSION['id'])) {
         $EmailAddress = filter_var($_POST["five"], FILTER_SANITIZE_EMAIL);
         $BirthDay = $_POST["six"];
 
+        // update query
         $updatequery = $pdo -> prepare("UPDATE user SET fullname=?, address=?, nic=?, phonenumber=?, email=?, birthday=? WHERE id=?");
+        // execute update query
         $updatequery -> execute([$FullName, $Address,   $NIC, $PhoneNumber, $EmailAddress, $BirthDay, $userId]);
     }
 
+    // fetch the particular data set that matches with given user id
     $user = $stmt -> fetch();
 
 
@@ -84,6 +95,7 @@ if(isset($_SESSION['id'])) {
 
       <div class="modal-body">
 
+      <!-- hidden text box -->
       <input type="hidden"  id="delid" name="delid">
 
       <h4> Do you want delete this Account ?? </h4>
@@ -194,9 +206,7 @@ if(isset($_SESSION['id'])) {
           <hr>
 
           <button type="submit" class="btn btn-success" id="edit" name="edit">Update Account</button>
-
-          <!-- <a href="./delete.php" class="btn btn-danger">Delete Account</a> -->
-
+          
           <button type="button" class="btn btn-danger deletebtn">Delete Account</button>
           
 
@@ -212,18 +222,21 @@ if(isset($_SESSION['id'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+    <!-- jquery -->
     <script> 
 
       $(document).ready(function () {
 
+        // function for Delete Account button
         $('.deletebtn').on('click', function () {
 
+          // when click on the Delete Account button pop up the modal
           $('#deletemodal').modal('show');
 
+          // access My Account form's the hiden text box value
           var id = $('#hid').val();
-
-          console.log(id);
-
+          
+          // pass the value to pop up modal's hidden text box
           $('#delid').val(id);
 
         });

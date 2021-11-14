@@ -3,7 +3,7 @@
 // link the configuration file
 require('./config/db.php');
 
-// check whether the submit button containing values or not
+// check whether the submit button containing values
 if(isset($_POST['submit'])) {
 
     // create variables and access the values which are instered by keyboard using post method and name attribute
@@ -27,8 +27,11 @@ $Checks = implode(",", $_POST["check"]);
 // validate email address
 if(filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
 
+    // select query
     $stmt = $pdo -> prepare("SELECT * FROM user WHERE email = ?");
+    // execute the select query
     $stmt -> execute([$EmailAddress]);
+    // get the row count which has same email address as given email address
     $totalUser = $stmt -> rowCount();
 
     // if the email is already existing
@@ -45,6 +48,7 @@ if(filter_var($EmailAddress, FILTER_VALIDATE_EMAIL)) {
 
         // insert query for insert data into user table
         $insertquery = $pdo -> prepare("INSERT INTO user(fullname, address, nic, phonenumber, email, gender, birthday, pwd, checks) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        // excute the insert query
         $insertquery -> execute([$FullName, $Address, $NIC, $PhoneNumber, $EmailAddress, $Gender, $BirthDay, $hashedPassword, $Checks]);
 
         // pop up alert message regarding registration Successful and redirect to the login.html page
